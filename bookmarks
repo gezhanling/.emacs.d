@@ -1,0 +1,11 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-capture-last-stored"
+ (filename . "~/orgMode/20260215223856-freecad.org")
+ (front-context-string . "\n1. guid: https:")
+ (rear-context-string . "+title: freecad\n")
+ (position . 85)
+ (last-modified 27025 55955 874857 124000))
+)
