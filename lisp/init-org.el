@@ -40,6 +40,7 @@
 (global-set-key "\C-ca" 'org-agenda)
 (setq org-agenda-files (directory-files-recursively my-agenda-path "\\.org$"))
 
+;;ctrl-c ctrl-w refile org
 (require 'org-capture)
 (add-to-list 'org-capture-templates
              `("i" "inbox" entry (file ,(concat my-agenda-path "\\inbox.org"))
@@ -91,6 +92,29 @@
 
 ;; 启动时打开指定的 Org 文件 以进入org模式
 (find-file my-temp-file)
+
+(use-package org-pomodoro
+  :ensure t
+  :after org
+  :config
+  (setq org-pomodoro-length 30             ; 工作时长 (分钟)
+        org-pomodoro-short-break-length 5  ; 短休息时长 (分钟)
+        org-pomodoro-long-break-length 10  ; 长休息时长 (分钟)
+        org-pomodoro-keep-completed-for-long-break 4) ; 每4个番茄钟后长休息
+  (add-hook 'org-pomodoro-finished-hook
+            (lambda ()
+              (org-notify "Take a break!!!")
+              ))
+  (add-hook 'org-pomodoro-short-break-finished-hook
+            (lambda ()
+              (org-notify "Short break done!!!")
+              ))
+  (add-hook 'org-pomodoro-long-break-finished-hook
+            (lambda ()
+              (org-notify "Long break done!!!")
+              ))
+  (define-key org-mode-map (kbd "C-c p") 'org-pomodoro)
+)
 
 
 ;; 文件末尾

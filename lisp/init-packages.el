@@ -52,6 +52,7 @@
 
 ;;undo-tree
 (use-package undo-tree
+  :ensure t
   :diminish
   :init
   (global-undo-tree-mode 1)
@@ -138,6 +139,7 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
   
+ 
 		 
 ;; 文件末尾
 (provide 'init-packages)
