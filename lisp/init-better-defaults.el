@@ -72,7 +72,7 @@
 (setq explicit-shell-file-name bash-path)
 (setq shell-file-name "bash")
 
-(global-hl-line-mode +1)
+;(global-hl-line-mode +1)
 
 (global-auto-revert-mode 1)
 
@@ -82,5 +82,23 @@
 
 (set-scroll-bar-mode nil)
 
+(set-face-attribute 'cursor nil
+                    :background "#ffffff"
+                    :foreground "#000000")
+					
+;; EasyPG 基本配置
+(setq epa-file-select-keys nil)			
+
+(modify-syntax-entry ?_ "w")
+(modify-syntax-entry ?- "w")
+
+;; 选中文字粘贴时，不把选中内容加入剪切板
+(setq evil-kill-on-visual-paste nil)
+
+;关闭Markdown的语法检查
+(with-eval-after-load 'lsp-bridge
+  (setq lsp-bridge-disabled-modes '(markdown-mode)))
+
+			
 ;; 文件末尾
 (provide 'init-better-defaults)

@@ -3,7 +3,7 @@
 (defvar my-next-file (concat my-agenda-path "next.org"))
 (defvar my-projects-file (concat my-agenda-path "projects.org"))
 (defvar my-reading-file (concat my-agenda-path "reading.org"))
-(defvar my-temp-file (concat my-roam-path "20240512115955-temp.org"))
+(defvar my-temp-file (concat my-roam-path "20240512115955-aatemp.org"))
 
 (use-package org-roam
   :ensure t ;; 自动安装
@@ -19,8 +19,6 @@
 		 ("C-c n t" . org-roam-tag-add)
 		 ("C-c n d c" . org-roam-dailies-capture-today)
 		 ("C-c n d t" . org-roam-dailies-goto-today)) 
-  :bind-keymap
-  ;;("C-c n d" . org-roam-dailies-map) ;; 日记菜单
   :config
   (org-roam-db-autosync-mode)) ;; 启动时自动同步数据库
 
@@ -36,11 +34,8 @@
     '((sequence "TODO(t!)" "NEXT(n)" "WAITTING(w)" "SOMEDAY(s)" "|" "DONE(d@/!)" "ABORT(a@/!)")
      ))
 
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
 (setq org-agenda-files (directory-files-recursively my-agenda-path "\\.org$"))
 
-;;ctrl-c ctrl-w refile org
 (require 'org-capture)
 (add-to-list 'org-capture-templates
              `("i" "inbox" entry (file ,(concat my-agenda-path "\\inbox.org"))
@@ -66,9 +61,9 @@
 
 (use-package org
   :custom-face
-  (org-level-1 ((t (:height 1.3 :weight bold))))
-  (org-level-2 ((t (:height 1.2 :weight bold))))
-  (org-level-3 ((t (:height 1.1 :weight bold))))
+  (org-level-1 ((t (:height 1.2 :weight bold))))
+  (org-level-2 ((t (:height 1.1 :weight bold))))
+  (org-level-3 ((t (:height 1.0 :weight bold))))
   (org-level-4 ((t (:height 1.0 :weight bold))))
   (org-level-5 ((t (:height 1.0 :weight bold))))
   (org-level-6 ((t (:height 1.0 :weight bold))))
@@ -97,7 +92,7 @@
   :ensure t
   :after org
   :config
-  (setq org-pomodoro-length 30             ; 工作时长 (分钟)
+  (setq org-pomodoro-length 45             ; 工作时长 (分钟)
         org-pomodoro-short-break-length 5  ; 短休息时长 (分钟)
         org-pomodoro-long-break-length 10  ; 长休息时长 (分钟)
         org-pomodoro-keep-completed-for-long-break 4) ; 每4个番茄钟后长休息
