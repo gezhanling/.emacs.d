@@ -1,13 +1,9 @@
 (use-package package :ensure t)
-(setq package-archives '(;("gnu-qh"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                         ;("nongnu-qh" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
-                         ;("melpa-qh"  . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-						 ;("melpa"  . "https://melpa.org/packages/")
-						 ;("gnu"    . "https://elpa.gnu.org/packages/")
-						 ;("nongnu" . "https://elpa.nongnu.org/nongnu/")
-						 ("gnu-nju"    . "https://mirror.nju.edu.cn/elpa/gnu/")						 
-                         ("nongnu-nju" . "https://mirror.nju.edu.cn/elpa/nongnu/")
-                         ("melpa-nju"  . "https://mirror.nju.edu.cn/elpa/melpa/")))
+(setq package-archives '(
+												 ("gnu-nju"    . "https://mirror.nju.edu.cn/elpa/gnu/")						 
+												 ("nongnu-nju" . "https://mirror.nju.edu.cn/elpa/nongnu/")
+												 ("melpa-nju"  . "https://mirror.nju.edu.cn/elpa/melpa/")
+												 ))
 (package-initialize)
 
 ;;防止反复调用 package-refresh-contents 会影响加载速度
@@ -32,6 +28,7 @@
 (use-package evil
   :ensure t  ; 确保安装
   :init
+
   (setq evil-want-keybinding nil)  ; 如果使用 evil-collection 可能需要此设置
   :config
   (evil-mode 1))  ; 启动 evil-mode
@@ -125,11 +122,11 @@
   (evil-snipe-override-mode +1))		 
 	
 (setq treesit-language-source-alist
-      '((bash . ("https://github.com/tree-sitter/tree-sitter-bash" "v0.23.0" nil nil nil))
-        (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.23.0" nil nil nil))
-		(c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.21.4" nil nil nil))
-		(cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.22.3" nil nil nil))
-       ))
+			'((bash . ("https://github.com/tree-sitter/tree-sitter-bash" "v0.23.0" nil nil nil))
+				(python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.23.0" nil nil nil))
+				(c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.21.4" nil nil nil))
+				(cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.22.3" nil nil nil))
+				))
 	
 (use-package treesit-auto
   :ensure t
@@ -139,6 +136,15 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
   
-		 
+(use-package real-auto-save
+  :ensure t
+  :config
+  ;; 设置空闲 2 秒后自动保存
+  (setq real-auto-save-interval 228) ; 单位是秒
+  ;; 开启全局自动保存模式
+  (real-auto-save-mode +1)
+  (global-real-auto-save-mode t)
+)
+
 ;; 文件末尾
 (provide 'init-packages)
