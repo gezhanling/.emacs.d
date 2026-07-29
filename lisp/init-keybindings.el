@@ -1,4 +1,4 @@
-
+;;;;org
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 ;;ctrl-c ctrl-w refile org
@@ -8,7 +8,6 @@
 (evil-global-set-key 'normal (kbd "C-u") 'evil-jump-forward)
 (evil-define-key 'normal 'global (kbd "C-h") 'evil-window-left)
 (evil-define-key 'normal 'global (kbd "C-l") 'evil-window-right)
-
 
 ;; 文件末尾
 (provide 'init-keybindings)
